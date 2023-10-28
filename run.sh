@@ -4,7 +4,7 @@ for parameter in "catalogue.dev.MONGO_URL,MONGO_URL catalogue.dev.DOCUMENTDB,DOC
   ssm_parameter =  $(echo parameter | awk -F , '{ print $1 }'
   app_parameter =  $(echo parameter | awk -F , '{ print $1 }'
 
-  echo $app_parameter=aws ssm get-parameter --name $ssm_parameter --with-decryption | jq .Parameter.value | sed -e 's/"//g'
+  echo $app_parameter=aws ssm get-parameter --name $ssm_parameter --with-decryption | jq .Parameter.value | sed -e 's/"//g' >>/common/parameter
 done
 
 
